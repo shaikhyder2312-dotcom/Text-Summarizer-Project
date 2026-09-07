@@ -1,5 +1,7 @@
 .git
-.github
+.github/*
+!.github/workflows/
+!.github/workflows/*.yml
 
 __pycache__
 *.py[cod]
@@ -25,5 +27,3 @@ frontend/dist
 *.ipynb
 *.egg-info/
 *.zip
-
-Dockerfile.cached
