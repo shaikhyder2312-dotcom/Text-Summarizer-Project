@@ -1,45 +1,38 @@
 from src.textSummarizer.constants import *
 from src.textSummarizer.utils.common import read_yaml, create_directories
-from pathlib import Path
-from src.textSummarizer.entity import DataIngestionConfig,DatavalidationConfig
+from src.textSummarizer.entity import SummarizerConfig
+
 
 class ConfigurationManager:
+
     def __init__(
         self,
-        config_filepath = CONFIG_FILE_PATH,
-        params_filepath = PARAMS_FILE_PATH):
-
+        config_filepath=CONFIG_FILE_PATH,
+        params_filepath=PARAMS_FILE_PATH
+    ):
         self.config = read_yaml(config_filepath)
         self.params = read_yaml(params_filepath)
 
         create_directories([self.config.artifacts_root])
 
-    
+    def get_summarizer_config(self) -> SummarizerConfig:
 
-    def get_data_ingestion_config(self) -> DataIngestionConfig:
-        config = self.config.data_ingestion
+        config = self.config.summarizer
+        params = self.params.summarizer
+        
 
         create_directories([config.root_dir])
 
-        data_ingestion_config = DataIngestionConfig(
+        summarizer_config = SummarizerConfig(
             root_dir=config.root_dir,
-            source_URL=config.source_URL,
-            local_data_file=config.local_data_file,
-            unzip_dir=config.unzip_dir 
+            abstractive_model_name=params.abstractive.model_name,
+            abstractive_max_input_length=params.abstractive.max_input_length,
+            abstractive_max_new_tokens=params.abstractive.max_new_tokens,
+            abstractive_num_beams=params.abstractive.num_beams,
+            abstractive_no_repeat_ngram_size=params.abstractive.no_repeat_ngram_size,
+            abstractive_min_input_words=params.abstractive.min_input_words,
+            extractive_model_name=params.extractive.model_name,
+            extractive_top_n_sentences=params.extractive.top_n_sentences
         )
 
-        return data_ingestion_config
-    
-    def get_data_validation_config(self) -> DatavalidationConfig:
-        config = self.config.data_validation
-
-        create_directories([config.root_dir])
-
-        data_validation_config = DatavalidationConfig(
-            root_dir =config.root_dir,
-            STATUS_FILE =config.STATUS_FILE,
-            ALL_REQUIRED_FILES= config.ALL_REQUIRED_FILES
-        )
-
-        return data_validation_config    
-    
+        return summarizer_config

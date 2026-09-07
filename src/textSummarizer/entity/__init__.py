@@ -1,15 +1,15 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-@dataclass(frozen=True)
-class DataIngestionConfig:
-    root_dir: Path
-    source_URL: str
-    local_data_file: Path
-    unzip_dir: Path
 
-@dataclass(frozen=True)
-class DatavalidationConfig:
+@dataclass
+class SummarizerConfig:
     root_dir: Path
-    STATUS_FILE: str
-    ALL_REQUIRED_FILES: list    
+    abstractive_model_name: str
+    abstractive_max_input_length: int
+    abstractive_max_new_tokens: int
+    abstractive_num_beams: int
+    abstractive_no_repeat_ngram_size: int
+    abstractive_min_input_words: int
+    extractive_model_name: str
+    extractive_top_n_sentences: int

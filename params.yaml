@@ -1,1 +1,14 @@
-key: value
+summarizer:
+
+  abstractive:
+    model_name: "sshleifer/distilbart-cnn-12-6"
+    max_input_length: 384
+    max_new_tokens: 100
+    num_beams: 4
+    no_repeat_ngram_size: 3
+    min_input_words: 5
+
+
+  extractive:
+    model_name: "en_core_web_lg"
+    top_n_sentences: 3
