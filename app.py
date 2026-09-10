@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
 from src.textSummarizer.pipeline.prediction_pipeline import PredictionPipeline
 
 
@@ -11,9 +12,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.mount("/assets", StaticFiles(directory="frontend/dist/assets"), name="assets")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,9 +33,7 @@ class TextRequest(BaseModel):
 
 @app.get("/")
 def home():
-    return {
-        "message": "Text Summarization API is running"
-    }
+    return FileResponse("frontend/dist/index.html")
 
 
 @app.post("/summarize")
