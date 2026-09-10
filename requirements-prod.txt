@@ -1,0 +1,13 @@
+torch==2.12.1
+transformers
+spacy
+pytextrank
+sentencepiece
+pyyaml
+pandas
+numpy
+tqdm
+python-box
+ensure
+fastapi
+uvicorn
