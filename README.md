@@ -4,7 +4,7 @@ An NLP-based text summarization application that generates concise summaries usi
 
 The project explores multiple summarization approaches and transformer models to find a practical balance between **summary quality, model performance, and resource requirements**.
 
-![Text Summarizer](./Screenshots/Image1.png)
+![Text Summarizer](./Screenshots/Image3.png)
 
 ## Overview
 
@@ -281,17 +281,18 @@ Then open the local application URL displayed by the application.
 
 ### Text Summarizer Interface
 
-![Text Summarizer](./Screenshots/Image1.png)
+![Text Summarizer](./Screenshots/Image3.png)
 
 ### Input Text
 
-![Input Text](./Screenshots/Input.png)
+![Input Text](./Screenshots/Image4.png)
 
 ### Generated Summary
 
-![Generated Summary](./Screenshots/Summary.png)
+![Generated Summary](./Screenshots/Image5.png)
 
-> Add your screenshots to the `Screenshots` folder and update the filenames if required.
+![Generated Summary](./Screenshots/Image6.png)
+
 
 ## Project Structure
 
